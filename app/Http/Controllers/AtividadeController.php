@@ -51,12 +51,11 @@ class AtividadeController extends Controller
      */
     public function edit(Atividade $atividade)
     {
+        if ($atividade->user_id !== Auth::id()) {
+            return redirect()->route('atividades.index');
+        }
 
-            if ($atividade->user_id !== Auth::id()) return redirect()->route('atividades.index');
-
-            return view('atividades.edit', compact('atividade'));
-
-
+        return view('atividade.edit', compact('atividade')); // Corrigido para 'atividade.edit'
     }
 
 
