@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\AtividadeRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Atividade;
 use Illuminate\Http\Request;
+
 
 class AtividadeController extends Controller
 {
@@ -26,27 +28,15 @@ class AtividadeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string',
-            'data_inicio' => 'required|date',
-            'data_termino' => 'required|date|after:data_inicio',
-            'status' => 'required|in:pendente,concluída,cancelada',
-        ]);
+    public function store(AtividadeRequest $request)
+{
+    // Criar e salvar a atividade sem redundâncias
+    $atividade = new Atividade($request->validated());
+    $atividade->user_id = Auth::id();
+    $atividade->save();
 
-        Atividade::create([
-            'user_id' => Auth::id(),
-            'nome' => $request->nome,
-            'descricao' => $request->descricao,
-            'data_inicio' => $request->data_inicio,
-            'data_termino' => $request->data_termino,
-            'status' => $request->status
-        ]);
-
-        return redirect()->route('atividades.index')->with('success', 'Atividade criada!');
-    }
+    return redirect()->route('atividades.index')->with('success', 'Atividade criada com sucesso!');
+}
 
     /**
      * Display the specified resource.

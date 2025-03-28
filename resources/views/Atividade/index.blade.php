@@ -4,6 +4,12 @@
 <div class="container">
     <h1>Minhas Atividades</h1>
     <a href="{{ route('atividades.create') }}" class="btn btn-primary">Nova Atividade</a>
+    <!-- Exibe mensagem de sucesso após salvar uma atividade -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <table class="table mt-3">
         <thead>
@@ -37,3 +43,5 @@
     </table>
 </div>
 @endsection
+
+

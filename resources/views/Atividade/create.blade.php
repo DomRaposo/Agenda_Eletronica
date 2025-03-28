@@ -18,13 +18,14 @@
         </div>
 
         <div class="form-group">
-            <label for="inicio">Data e Hora de Início</label>
-            <input type="datetime-local" class="form-control" id="inicio" name="inicio" value="{{ old('inicio') }}" required>
+            <label for="data_inicio">Data e Hora de Início</label>
+            <input type="datetime-local" name="data_inicio" id="data_inicio" class="form-control">
+
         </div>
 
         <div class="form-group">
-            <label for="fim">Data e Hora de Término</label>
-            <input type="datetime-local" class="form-control" id="fim" name="fim" value="{{ old('fim') }}" required>
+            <label for="data_termino">Data e Hora de Término</label>
+            <input type="datetime-local" name="data_termino" id="data_termino" class="form-control">
         </div>
 
         <div class="form-group">
@@ -36,8 +37,8 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Criar Atividade</button>
-        <a href="{{ route('atividades.index') }}" class="btn btn-secondary">Voltar</a>
+        <button type="submit" class="btn btn-primary mt-2">Criar Atividade</button>
+        <a href="{{ route('atividades.index') }}" class="btn btn-secondary mt-2">Voltar</a>
     </form>
 </div>
 @endsection

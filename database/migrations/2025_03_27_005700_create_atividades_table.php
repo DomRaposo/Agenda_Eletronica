@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('nome');
-            $table->text('descicao')->nullable();
+            $table->text('descricao')->nullable();
             $table->dateTime('data_inicio');
             $table->dateTime('data_termino');
             $table->enum('status', ['pendente', 'concluida', 'cancelada'])->default('pendente');
